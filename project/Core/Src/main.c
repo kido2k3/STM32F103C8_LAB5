@@ -21,8 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
-#include <stdlib.h>
+#include "my_system.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,13 +62,7 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t temp = 0;
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-	if (huart->Instance == huart2.Instance) {
-		HAL_UART_Transmit(&huart2, &temp, sizeof(temp), 10);
-		HAL_UART_Receive_IT(&huart2, &temp, 1);
-	}
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -104,23 +97,13 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_UART_Receive_IT(&huart2, &temp, 1);
-	char str[20];
-	uint16_t pre_ADC_value = 0;
-	uint16_t ADC_value = 45;
-
+	init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		pre_ADC_value = ADC_value;
-		ADC_value = rand()%4096;//HAL_ADC_GetValue(&hadc1);
-		if (pre_ADC_value != ADC_value)
-			HAL_UART_Transmit(&huart2, (void*) str,
-					sprintf(str, "%u\r\n", (unsigned int) ADC_value), 10);
-		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-		HAL_Delay(500);
+		loop();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

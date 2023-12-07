@@ -13,7 +13,7 @@
 #include "main.h"
 #include <string.h>
 
-#define TEST
+//#define TEST
 #define DEBUG_LED_PORT	GPIOC
 #define	DEBUG_LED_PIN	GPIO_PIN_13
 typedef uint8_t bool;

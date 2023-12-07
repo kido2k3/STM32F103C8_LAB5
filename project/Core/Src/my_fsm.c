@@ -21,6 +21,10 @@ static uint16_t value;
 /*
  * format command
  * !COM#*/
+/*
+ * brief: 	command_parser_fsm
+ * para: 	none
+ * retval: 	none*/
 void command_parser_fsm(void) {
 	switch (command_parser_st) {
 	case READ:
@@ -41,6 +45,10 @@ void command_parser_fsm(void) {
 		break;
 	}
 }
+/*
+ * brief: 	uart_communiation_fsm
+ * para: 	none
+ * retval: 	none*/
 void uart_communiation_fsm(void) {
 	switch (uart_communiation_st) {
 	case WAIT:

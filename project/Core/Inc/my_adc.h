@@ -10,4 +10,5 @@
 #include"my_define.h"
 
 uint16_t adc_GetValue(void);
+void adc_init(void);
 #endif /* INC_MY_ADC_H_ */
